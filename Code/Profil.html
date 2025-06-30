@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Profil</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <style>
+         * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Satoshi', 'Inter', 'Roboto', sans-serif;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+    }
+
+    .header {
+      background: linear-gradient(136deg, #FEF0E1 0%, #F7DCE8 47%, #CECDF3 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 83px;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 11px 20px;
+    }
+
+    .nav-link {
+      color: #21272A !important;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 8px !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dropdown-menu {
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 8px 0;
+    }
+
+    .dropdown-item {
+      padding: 8px 16px;
+      font-size: 15px;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 8px;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 39, 42, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #21272A;
+    }
+
+    .user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+
+    .user-name {
+      color: #21272A;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+        /* Profile Content */
+        .profile-container {
+            max-width: 1282px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 85px;
+            position: relative;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #CDCDF3 0%, #F7DCE8 47%, #FFF0E1 100%);
+            height: 100px;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-title {
+            color: black;
+            font-size: 24px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .profile-date {
+            color: black;
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 8px;
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #677BE6 0%, #744EA6 100%);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 36px;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(103, 123, 230, 0.3);
+        }
+
+        .profile-content {
+            padding: 40px;
+        }
+
+        .profile-main {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .profile-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #666;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            color: black;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .profile-email {
+            color: black;
+            opacity: 0.5;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: black;
+            opacity: 0.8;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            background: #F9F9F9;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 16px;
+            color: black;
+            opacity: 0.4;
+            height: 52px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            opacity: 1;
+            box-shadow: 0 0 0 2px rgba(103, 123, 230, 0.2);
+        }
+
+        .form-select {
+            background: #F9F9F9;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 16px;
+            color: black;
+            opacity: 0.4;
+            height: 52px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23757575' d='M6 8L0 0h12z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+        }
+
+        .email-section {
+            margin-bottom: 20px;
+        }
+
+        .email-title {
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .email-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .email-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(65, 130, 249, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-text {
+            color: black;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .add-email-btn {
+            background: rgba(103, 123, 230, 0.1);
+            color: #677BE6;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-email-btn:hover {
+            background: rgba(103, 123, 230, 0.2);
+        }
+
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rating-title {
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .stars {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star {
+            width: 24px;
+            height: 24px;
+            color: #757575;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star.filled {
+            color: #FFD700;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .profile-main {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 10px;
+            }
+            
+            .profile-content {
+                padding: 20px;
+            }
+            
+            .profile-header {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+            }
+            
+            .user-name {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../Aset/Logo.svg" alt="StudyBuddy Logo" style="width: 103px; height: 51px;" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenu"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+                <li><a class="dropdown-item" href="#">Cari Partner</a></li>
+                <li><a class="dropdown-item" href="#">Chat</a></li>
+                <li><a class="dropdown-item" href="#">Grup Belajar</a></li>
+                <li><a class="dropdown-item" href="#">Lokasi Belajar</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="user-profile">
+            <div class="user-avatar">
+              <img src="../Aset/foto-user.svg" alt="User Avatar" />
+            </div>
+            <div class="user-name">Ratna</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <!-- Profile Content -->
+    <div class="profile-container">
+        <div class="profile-card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div>
+                    <h1 class="profile-title">Profil</h1>
+                    <p class="profile-date">Kamis, 5 Juni 2025</p>
+                </div>
+                <button class="edit-btn">Edit</button>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Profile Main Info -->
+                <div class="profile-main">
+                    <div class="profile-avatar">
+                        <img src="../Aset/foto-user.svg" alt="Profile Picture" width="96" height="96" style="border-radius: 50%;">
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="profile-name">Ratna Sari</h2>
+                        <p class="profile-email">ratnasari11@student.ub.ac.id</p>
+                    </div>
+                </div>
+
+                <!-- Form Section -->
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-input" placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nama Panggilan</label>
+                            <input type="text" class="form-input" placeholder="Masukkan nama panggilan Anda">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Program Studi</label>
+                            <select class="form-select">
+                                <option>Pilih Program Studi Anda</option>
+                                <option>Teknik Informatika</option>
+                                <option>Sistem Informasi</option>
+                                <option>Teknologi Informasi</option>
+                                <option>Pendidikan Teknologi Informasi</option>
+                                <option>Teknik Komputer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Semester</label>
+                            <input type="text" class="form-input" placeholder="Masukkan semester Anda">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nomor Induk Mahasiswa</label>
+                            <input type="text" class="form-input" placeholder="Masukkan NIM Anda">
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+
+                <!-- Email and Rating Section -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <!-- Email Section -->
+                    <div class="email-section">
+                        <h3 class="email-title">Alamat email</h3>
+                        <div class="email-item">
+                            <div class="email-icon">
+                                📧
+                            </div>
+                            <span class="email-text">ratnasari11@student.ub.ac.id</span>
+                        </div>
+                        <button class="add-email-btn">+ Tambahkan email</button>
+                    </div>
+
+                    <!-- Rating Section -->
+                    <div class="rating-section">
+                        <h3 class="rating-title">Rating saya</h3>
+                        <div class="stars">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Star rating interaction
+        document.querySelectorAll('.star').forEach((star, index) => {
+            star.addEventListener('click', function() {
+                const stars = document.querySelectorAll('.star');
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.classList.add('filled');
+                    } else {
+                        s.classList.remove('filled');
+                    }
+                });
+            });
+        });
+
+        // Form input focus effects
+        document.querySelectorAll('.form-input, .form-select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.opacity = '1';
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.style.opacity = '0.4';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

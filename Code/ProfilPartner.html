@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Ratna Sari</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <style>
+        /* reset global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Satoshi', 'Inter', 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        /* navbar */
+        .header {
+            background: linear-gradient(136deg, #FEF0E1 0%, #F7DCE8 47%, #CECDF3 100%);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 83px;
+        }
+        
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 11px 20px;
+        }
+        
+        .navbar-brand img {
+            width: 103px;
+            height: 51px;
+        }
+        
+        .nav-link {
+            color: #21272A !important;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 8px !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+        }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+        }
+        
+        /* user profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #21272A;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+        
+        .user-name {
+            color: #21272A;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        /* dropdown */
+        .dropdown-menu {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 8px 0;
+        }
+        
+        .dropdown-item {
+            padding: 8px 16px;
+            font-size: 15px;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* toggler */
+        .navbar-toggler {
+            border: none;
+            padding: 8px;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 39, 42, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .main-container {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 1/1;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .profile-image::after {
+            content: '📷';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-major {
+            font-size: 14px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rating {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stars {
+            color: #ffa500;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .review-count {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-style: italic;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-body {
+            padding: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .location-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 25px;
+            color: white;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .location-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .location-list {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .academic-summary {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .summary-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            transform: translateY(0px);
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.25);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .summary-card:hover .card-title {
+            color: #667eea;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 4px;
+            transition: all 0.4s ease;
+            transform: scale(1);
+        }
+        
+        .summary-card:hover .tag {
+            transform: scale(1.05);
+        }
+        
+        .tag-default {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+        
+        .summary-card:hover .tag-default {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .tag-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .summary-card:hover .tag-active {
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+        }
+        
+        .goal-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        
+        .summary-card:hover .goal-text {
+            color: #333;
+        }
+        
+        .btn-custom {
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 12px 24px;
+            border: none;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .btn-outline-custom {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-outline-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-group-custom {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+        }
+        
+        .btn-group-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(118, 75, 162, 0.3);
+        }
+        
+        .review-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 20px;
+            font-size: 18px;
+            aspect-ratio: 1/1;
+        }
+        
+        .reviewer-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .review-stars {
+            color: #ffa500;
+            font-size: 14px;
+        }
+        
+        .review-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .review-meta {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .privacy-footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid #667eea;
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .privacy-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .privacy-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px 10px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+            
+            .profile-header {
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .profile-body {
+                padding: 25px;
+            }
+            
+            .academic-summary {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .privacy-title {
+                font-size: 20px;
+            }
+            
+            .privacy-text {
+                font-size: 14px;
+            }
+            
+            .privacy-footer {
+                margin: 20px 10px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../Aset/Logo.svg" alt="StudyBuddy Logo" style="width: 103px; height: 51px;" />
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenu"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Menu
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+                                <li><a class="dropdown-item" href="#">Cari Partner</a></li>
+                                <li><a class="dropdown-item" href="#">Chat</a></li>
+                                <li><a class="dropdown-item" href="#">Grup Belajar</a></li>
+                                <li><a class="dropdown-item" href="#">Lokasi Belajar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="../Aset/foto-user.svg" alt="User Avatar" />
+                        </div>
+                        <div class="user-name">Ratna</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-container">
+        <div class="row g-4">
+            <!-- Profile Card -->
+            <div class="col-lg-5">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="d-flex align-items-center">
+                            <div class="profile-image me-4">RS</div>
+                            <div>
+                                <h1 class="profile-name">Ratna Sari</h1>
+                                <div class="profile-major">Teknologi Informasi - Semester 2</div>
+                                <div class="rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">4.8 (12 Review)</span>
+                                </div>
+                                <div class="testimonial">
+                                    "Partner belajar yang sangat responsif dan mudah diajak diskusi. Selalu siap membantu!"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-body">
+                        <div class="section-header">
+                            <div class="section-icon">📍</div>
+                            <div class="section-title">Lokasi Belajar</div>
+                        </div>
+                        <div class="location-box">
+                            <div class="location-title">Tempat Belajar Favorit</div>
+                            <div class="location-list">RKB Lt.2 FILKOM, Perpustakaan UB, Critasena (untuk diskusi grup)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Summary -->
+            <div class="col-lg-7">
+                <div class="academic-summary">
+                    <div class="section-header">
+                        <div class="section-icon">🎓</div>
+                        <div class="section-title">Ringkasan Akademik</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="summary-card">
+                                <div class="card-title">Gaya Belajar</div>
+                                <div>
+                                    <span class="tag tag-default">Visual</span>
+                                    <span class="tag tag-default">Diskusi</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="summary-card">
+                                <div class="card-title">Mata Kuliah Semester ini</div>
+                                <div>
+                                    <span class="tag tag-active">PemWeb</span>
+                                    <span class="tag tag-active">Basis Data</span>
+                                    <span class="tag tag-active">Aljabar Linear</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="summary-card">
+                                <div class="card-title">Tujuan Belajar</div>
+                                <div class="goal-text">
+                                    Mau belajar bareng buat persiapan UTS dan ngerjain tugas Aljabar Linear. Butuh partner yang bisa diskusi rumus dan konsep dasar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-custom btn-outline-custom w-100">
+                                💬 Mulai Chat
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-custom btn-primary-custom w-100">
+                                📚 Ajukan Belajar Bareng
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-custom btn-group-custom w-100">
+                                👥 Tambahkan ke Grup Belajar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="section-header">
+                            <div class="section-icon">⭐</div>
+                            <div class="section-title">Review dari Partner Sebelumnya</div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="d-flex">
+                                <div class="review-avatar">K</div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div class="reviewer-name">Kiki</div>
+                                        <div class="review-stars">★★★★★</div>
+                                    </div>
+                                    <div class="review-text">
+                                        Partner yang ideal! Selalu on time dan preparation-nya bagus. Diskusi jadi lebih efektif dan focused.
+                                    </div>
+                                    <div class="review-meta">Tugas Kelompok Basis Data • April 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="d-flex">
+                                <div class="review-avatar">AF</div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div class="reviewer-name">Akbar Faisal</div>
+                                        <div class="review-stars">★★★★★</div>
+                                    </div>
+                                    <div class="review-text">
+                                        Responsif banget dan enak diajak diskusi. Ratna bisa jelasin konsep Aljabar Linear dengan cara yang mudah dipahami. Sangat membantu!
+                                    </div>
+                                    <div class="review-meta">Belajar Aljabar Linear bareng • Maret 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Footer -->
+    <div class="privacy-footer">
+        <div class="privacy-title">Privasi & Keamanan</div>
+        <div class="privacy-text">
+            Informasi kontak lengkap hanya ditampilkan setelah Anda terhubung sebagai partner belajar. StudyBuddy menjaga keamanan data pribadi semua pengguna.
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links using vanilla JavaScript
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

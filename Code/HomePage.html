@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Satoshi', 'Inter', 'Roboto', sans-serif;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+    }
+
+    .header {
+      background: linear-gradient(136deg, #FEF0E1 0%, #F7DCE8 47%, #CECDF3 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 83px;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 11px 20px;
+    }
+
+    .nav-link {
+      color: #21272A !important;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 8px !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dropdown-menu {
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 8px 0;
+    }
+
+    .dropdown-item {
+      padding: 8px 16px;
+      font-size: 15px;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 8px;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 39, 42, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #21272A;
+    }
+
+    .user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+
+    .user-name {
+      color: #21272A;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, #677BE6 0%, #744EA6 100%);
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .welcome-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #CDCDF3 0%, #F7DCE8 47%, #FFF0E1 100%);
+            border-radius: 30px;
+            padding: 60px;
+            position: relative;
+        }
+        
+        .welcome-title {
+            color: #5856A8;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .welcome-subtitle {
+            color: #5856A8;
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .waving-icon {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            vertical-align: middle;
+            transform: translateY(-4px); 
+        }
+
+
+
+        
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 40px;
+            padding: 40px 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon-container {
+            width: 74px;
+            height: 74px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-icon.search {
+            background: linear-gradient(180deg, #30C8FE 0%, #7CC0D8 100%);
+        }
+        
+        .feature-icon.chat {
+            background: #F178BC;
+        }
+        
+        .feature-icon.group {
+            background: #3DF2AF;
+        }
+        
+        .feature-icon.location {
+            background: linear-gradient(180deg, #FCA172 0%, #FF6E58 100%);
+        }
+        
+        .feature-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: black;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .feature-description {
+            color: #595959;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        /* User Profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #21272A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .user-name {
+            color: #21272A;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .welcome-container {
+                padding: 40px;
+            }
+            
+            .welcome-title {
+                font-size: 36px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .welcome-title {
+                font-size: 32px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 28px;
+            }
+            
+            .feature-title {
+                font-size: 28px;
+            }
+            
+            .feature-description {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .welcome-container {
+                padding: 30px 20px;
+            }
+            
+            .welcome-title {
+                font-size: 28px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 24px;
+            }
+            
+            .feature-card {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .welcome-title {
+                font-size: 24px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 20px;
+            }
+            
+            .feature-title {
+                font-size: 24px;
+            }
+            
+            .feature-description {
+                font-size: 16px;
+            }
+            
+            .user-profile {
+                gap: 10px;
+            }
+            
+            .user-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            
+            .user-name {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+   <header class="header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../Aset/Logo.svg" alt="StudyBuddy Logo" style="width: 103px; height: 51px;" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenu"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+                <li><a class="dropdown-item" href="#">Cari Partner</a></li>
+                <li><a class="dropdown-item" href="#">Chat</a></li>
+                <li><a class="dropdown-item" href="#">Grup Belajar</a></li>
+                <li><a class="dropdown-item" href="#">Lokasi Belajar</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="user-profile">
+            <div class="user-avatar">
+              <img src="../Aset/foto-user.svg" alt="User Avatar" />
+            </div>
+            <div class="user-name">Ratna</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="welcome-container">
+                <h1 class="welcome-title">
+                    Halo, Ratna! <img src="../Aset/wavinghand.svg" alt="Waving Hand" class="waving-icon">
+                </h1>
+
+
+                <p class="welcome-subtitle">
+                    Selamat datang kembali! Siap belajar untuk hari ini?
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <div class="feature-icon search">🔍</div>
+                        </div>
+                        <h3 class="feature-title">Cari Partner</h3>
+                        <p class="feature-description">
+                            Temukan teman belajar yang sesuai dengan mata kuliah dan jadwalmu
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <div class="feature-icon chat">💬</div>
+                        </div>
+                        <h3 class="feature-title">Chat</h3>
+                        <p class="feature-description">
+                            Komunikasi dengan partner, diskusi materi, dan tentukan jadwal untuk belajar offline
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <div class="feature-icon group">👥</div>
+                        </div>
+                        <h3 class="feature-title">Grup Belajar</h3>
+                        <p class="feature-description">
+                            Bergabung atau buat grup belajar untuk mata kuliah tertentu
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <div class="feature-icon location">📍</div>
+                        </div>
+                        <h3 class="feature-title">Lokasi Belajar</h3>
+                        <p class="feature-description">
+                            Cari tempat yang nyaman di sekitar kampus
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
