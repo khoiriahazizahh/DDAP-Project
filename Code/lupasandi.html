@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupa Sandi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style> 
+:root {
+    --cool-gray-20: #DDE1E6;
+    --cool-gray-90: #21272A;
+    --default-white: #FFF;
+    --primary-gradient: linear-gradient(90deg, #677BE6 0.01%, #744EA6 100.01%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Satoshi Variable', 'Inter' sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    width: 1440px;
+    height: 1024px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-gradient);
+}
+
+.page-content {
+    display: flex;
+    width: 680px;
+    padding: 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border: 1px solid var(--cool-gray-20);
+    background: var(--default-white);
+    border-radius: 0px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); 
+}
+
+.page-title {
+    color: var(--cool-gray-90);
+    text-align: center;
+    font-family: 'Inter', 'Satoshi Variable', sans-serif;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; 
+    margin: 0;
+}
+
+.reset-message {
+    align-self: stretch;
+    color: var(--cool-gray-90);
+    text-align: center;
+    font-family: 'Inter', 'Satoshi Variable', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; 
+    margin: 0;
+}
+
+
+.reset-form {
+    display: flex;
+    padding-top: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.form-label {
+    color: var(--cool-gray-90);
+    font-family: 'Inter', 'Satoshi Variable', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.email-input {
+    display: flex;
+    height: 48px;
+    padding: 12px 16px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border: 1px solid var(--cool-gray-20);
+    border-radius: 6px;
+    font-family: 'Inter', 'Satoshi Variable', sans-serif;
+    font-size: 16px;
+    color: var(--cool-gray-90);
+    background: var(--default-white);
+    transition: all 0.3s ease;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: #677BE6;
+    box-shadow: 0 0 0 3px rgba(103, 123, 230, 0.1);
+}
+
+.email-input::placeholder {
+    color: #8D9194;
+}
+
+.reset-button {
+    display: flex;
+    height: 48px;
+    padding: 16px 12px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 6px;
+    color: var(--default-white);
+    font-family: 'Satoshi Variable', 'Inter' sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; 
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(103, 123, 230, 0.3);
+    background: linear-gradient(90deg, #5a6dd1 0.01%, #65448f 100.01%);
+}
+
+.reset-button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(103, 123, 230, 0.2);
+}
+
+.reset-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(103, 123, 230, 0.3);
+}
+
+@media (max-width: 1440px) {
+    .main-container {
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+    }
+    
+    .page-content {
+        width: 100%;
+        max-width: 680px;
+        padding: 60px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: 40px 24px;
+        gap: 20px;
+    }
+    
+    .page-title {
+        font-size: 32px;
+    }
+    
+    .reset-message {
+        font-size: 16px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="page-content">
+            <h1 class="page-title">Lupa sandi?</h1>
+            <p class="reset-message">Kami akan mengirim pesan ke email Anda untuk mereset sandi</p>
+            
+            <form class="reset-form" id="resetForm">
+                <div class="form-group">
+                    <label for="email" class="form-label">Alamat Email</label>
+                    <input type="email" class="form-control email-input" id="email" placeholder="Masukkan email Anda" required>
+                </div>
+                <button type="submit" class="btn reset-button">Kirim Tautan Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    $('#resetForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        const email = $('#email').val();
+        if (!email) {
+            alert('Mohon masukkan alamat email!');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            alert('Format email tidak valid!');
+            return;
+        }
+        
+        const $button = $('.reset-button');
+        const originalText = $button.text();
+        $button.text('Mengirim...').prop('disabled', true);
+
+        setTimeout(function() {
+            alert(`Tautan reset sandi telah dikirim ke ${email}.\nSilakan cek email Anda!`);
+            $('#resetForm')[0].reset();
+            $button.text(originalText).prop('disabled', false);
+        }, 2000);
+    });
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    $('.email-input').on('focus', function() {
+        $(this).closest('.form-group').addClass('focused');
+    }).on('blur', function() {
+        $(this).closest('.form-group').removeClass('focused');
+    });
+});
+    </script>
+</body>
+</html>

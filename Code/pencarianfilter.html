@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Partner Belajar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style> 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Satoshi Variable', 'Inter', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #677BE6 0%, #744EA6 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 1347px;
+    background: #FDFDFD;
+    border-radius: 40px;
+    padding: 60px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.search-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+}
+
+.main-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #21272A;
+    line-height: 46.2px;
+}
+
+.form-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 300;
+    color: #000;
+    margin-bottom: 8px;
+    line-height: 16.5px;
+}
+
+.form-field {
+    width: 100%;
+    height: 55px;
+    padding: 12px 16px;
+    background: #F2F4F8;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.select-field {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e%3cpath d='M8 12L16 20L24 12' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 24px;
+    padding-right: 50px;
+}
+
+.form-field:focus {
+    outline: none;
+    background: #E8F0FE;
+    box-shadow: 0 0 0 2px #677BE6;
+}
+
+.form-field:hover {
+    background: #E8F0FE;
+}
+
+.submit-button {
+    width: 100%;
+    height: 69px;
+    background: linear-gradient(135deg, #677BE6 0%, #744EA6 100%);
+    border: 2px solid #0F62FE;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(103, 123, 230, 0.4);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.button-icon {
+    width: 29px;
+    height: 29px;
+    flex-shrink: 0;
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.results-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: #F8F9FA;
+    border-radius: 12px;
+    display: none;
+}
+
+.result-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.result-item:hover {
+    transform: translateY(-2px);
+}
+
+.result-item h3 {
+    color: #21272A;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.result-item p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.no-results {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px;
+}
+
+@media (max-width: 1024px) {
+    .search-container {
+        padding: 40px 30px;
+        border-radius: 20px;
+    }
+
+    .main-title {
+        font-size: 32px;
+    }
+
+    .search-icon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+
+    .header-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-title {
+        font-size: 28px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        height: 56px;
+    }
+}
+    </style>
+
+</head>
+<body>
+    <div class="search-container">
+        <div class="header-section">
+            <svg class="search-icon" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.6541 15.486C20.5516 15.5669 18.6509 16.3173 17.6346 17.3347C17.5224 17.4469 17.3891 17.5359 17.2425 17.5966C17.0958 17.6573 16.9386 17.6885 16.7799 17.6884C16.6212 17.6883 16.4641 17.657 16.3175 17.5962C16.1708 17.5355 16.0376 17.4464 15.9255 17.3341C15.8133 17.2218 15.7243 17.0886 15.6636 16.9419C15.6029 16.7953 15.5717 16.6381 15.5718 16.4794C15.5718 16.3207 15.6031 16.1635 15.6639 16.0169C15.7247 15.8703 15.8138 15.7371 15.9261 15.6249C17.4933 14.0577 20.0453 13.1684 22.5598 13.0705C25.0913 12.9726 27.8547 13.665 29.7905 15.6008C30.0171 15.8275 30.1443 16.1349 30.1442 16.4555C30.144 16.776 30.0166 17.0834 29.7899 17.3099C29.5631 17.5365 29.2557 17.6637 28.9352 17.6636C28.6146 17.6635 28.3073 17.5361 28.0807 17.3093C26.7636 15.9911 24.7409 15.4038 22.6541 15.4848" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M33.089 34.9643C30.2576 37.3601 26.6673 38.6722 22.9583 38.6667C14.2825 38.6667 7.25 31.6342 7.25 22.9583C7.25 14.2825 14.2825 7.25 22.9583 7.25C31.6342 7.25 38.6667 14.2825 38.6667 22.9583C38.6667 26.819 37.2747 30.3533 34.9643 33.089L37.6323 32.625L50.0588 45.0515C50.9808 45.9735 50.9808 47.4682 50.0588 48.3889L48.3889 50.0588C47.467 50.9808 45.9723 50.9808 45.0515 50.0588L32.625 37.6323L33.089 34.9643ZM36.25 22.9583C36.25 30.299 30.299 36.25 22.9583 36.25C15.6177 36.25 9.66667 30.299 9.66667 22.9583C9.66667 15.6177 15.6177 9.66667 22.9583 9.66667C30.299 9.66667 36.25 15.6177 36.25 22.9583ZM45.0092 43.419L36.8107 35.2205L35.4573 35.4561L35.2205 36.8107L43.4432 45.0334L45.0092 43.419ZM45.1518 46.742L46.7202 48.3104L48.3104 46.7202L46.7178 45.1276L45.1518 46.742Z" fill="black"/>
+            </svg>
+            <h1 class="main-title">Cari Partner</h1>
+        </div>
+
+        <form class="form-container" id="partnerSearchForm">
+            <div class="form-group">
+                <label for="programStudi" class="form-label">Program Studi</label>
+                <select id="programStudi" name="programStudi" class="form-field select-field">
+                    <option value="">Pilih Program Studi</option>
+                    <option value="teknik-informatika">Teknik Informatika (TIF)</option>
+                    <option value="teknik-komputer">Teknik Komputer (TKOM)</option>
+                    <option value="sistem-informasi">Sistem Informasi (SI)</option>
+                    <option value="teknologi-informasi">Teknologi Informasi (TI)</option>
+                    <option value="pendidikan-ti">Pendidikan Teknologi Informasi (PTI)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="semester" class="form-label">Semester</label>
+                <select id="semester" name="semester" class="form-field select-field">
+                    <option value="">Pilih Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mataKuliah" class="form-label">Mata Kuliah</label>
+                <select id="mataKuliah" name="mataKuliah" class="form-field select-field">
+                    <option value="">Pilih Mata Kuliah</option>
+                    <!-- TIF -->
+                    <option value="pengantar-informatika">Pengantar Keilmuan Informatika</option>
+                    <option value="pemrograman-dasar">Pemrograman Dasar & OOP</option>
+                    <option value="algoritma-struktur-data">Algoritma dan Struktur Data</option>
+                    <option value="analisis-perancangan-sistem">Analisis & Perancangan Sistem</option>
+                    <option value="rekayasa-perangkat-lunak">Rekayasa Perangkat Lunak</option>
+                    <option value="desain-analisis-algoritma">Desain dan Analisis Algoritma</option>
+                    <option value="pengembangan-web-mobile">Pengembangan Aplikasi Web & Mobile</option>
+                    <option value="jaringan-komputer">Jaringan Komputer</option>
+                    <option value="keamanan-informasi">Keamanan Informasi</option>
+                    <option value="kecerdasan-buatan">Kecerdasan Buatan</option>
+                    <option value="data-warehousing">Data Warehousing</option>
+                    <option value="sistem-terdistribusi">Sistem Terdistribusi</option>
+                    <option value="grafika-komputer">Grafika Komputer</option>
+                    <!-- TEKKOM -->
+                    <option value="pengantar-teknik-komputer">Pengantar Teknik Komputer</option>
+                    <option value="elektronika-dasar">Elektronika Dasar & Lanjut</option>
+                    <option value="sistem-digital">Sistem Digital</option>
+                    <option value="embedded-system">Embedded System</option>
+                    <option value="mikroprosesor">Mikroprosesor dan Mikrokontroler</option>
+                    <option value="arsitektur-komputer">Arsitektur Komputer Lanjut</option>
+                    <option value="sistem-tertanam">Sistem Tertanam</option>
+                    <option value="rangkaian-digital">Rangkaian Digital & Analog</option>
+                    <option value="pemrograman-perangkat-keras">Pemrograman Perangkat Keras</option>
+                    <option value="pemrosesan-sinyal">Pemrosesan Sinyal Digital</option>
+                    <option value="sistem-real-time">Sistem Real-Time</option>
+                    <option value="robotika">Robotika</option>
+                    <!-- SI -->
+                    <option value="pengantar-sistem-informasi">Pengantar Sistem Informasi</option>
+                    <option value="sim">Sistem Informasi Manajemen</option>
+                    <option value="tata-kelola-ti">Tata Kelola TI</option>
+                    <option value="enterprise-architecture">Enterprise Architecture</option>
+                    <option value="audit-si">Audit SI</option>
+                    <option value="manajemen-proyek-ti">Manajemen Proyek TI</option>
+                    <option value="erp">ERP (Enterprise Resource Planning)</option>
+                    <option value="analisis-kebutuhan-sistem">Analisis Kebutuhan Sistem</option>
+                    <option value="strategi-si">Strategi Sistem Informasi</option>
+                    <option value="sistem-pendukung-keputusan">Sistem Pendukung Keputusan</option>
+                    <option value="ux-prototyping">Desain UX & Prototyping</option>
+                    <!-- TI -->
+                    <option value="dasar-infrastruktur-ti">Dasar Infrastruktur TI</option>
+                    <option value="arsitektur-jaringan">Arsitektur Jaringan</option>
+                    <option value="keamanan-siber">Keamanan Siber</option>
+                    <option value="teknologi-cloud">Teknologi Cloud</option>
+                    <option value="data-engineering">Data Engineering</option>
+                    <option value="enterprise-system">Enterprise System</option>
+                    <option value="it-governance">IT Governance</option>
+                    <option value="pengembangan-si">Pengembangan Sistem Informasi</option>
+                    <option value="analitik-ti">Analitik TI</option>
+                    <!-- PTI -->
+                    <option value="dasar-pendidikan">Dasar-Dasar Pendidikan</option>
+                    <option value="psikologi-pendidikan">Psikologi Pendidikan</option>
+                    <option value="media-pembelajaran">Media Pembelajaran Interaktif</option>
+                    <option value="microteaching">Microteaching</option>
+                    <option value="riset-pendidikan-ti">Riset Pendidikan TI</option>
+                    <option value="evaluasi-pembelajaran">Evaluasi Pembelajaran</option>
+                    <option value="kurikulum-perencanaan">Kurikulum dan Perencanaan Pembelajaran</option>
+                    <option value="strategi-pembelajaran-ti">Strategi Pembelajaran TI</option>
+                    <option value="bahan-ajar-digital">Pengembangan Bahan Ajar Digital</option>
+                    <option value="teknologi-pembelajaran">Teknologi Pembelajaran</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="gayaBelajar" class="form-label">Gaya Belajar</label>
+                <select id="gayaBelajar" name="gayaBelajar" class="form-field select-field">
+                    <option value="">Pilih Gaya Belajar</option>
+                    <option value="visual">Visual (Melihat)</option>
+                    <option value="auditori">Auditori (Mendengar)</option>
+                    <option value="kinestetik">Kinestetik (Praktik)</option>
+                    <option value="reading">Reading/Writing (Membaca/Menulis)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tujuanBelajar" class="form-label">Tujuan Belajar</label>
+                <select id="tujuanBelajar" name="tujuanBelajar" class="form-field select-field">
+                    <option value="">Pilih Tujuan Belajar</option>
+                    <option value="ujian">Persiapan Ujian</option>
+                    <option value="tugas">Mengerjakan Tugas</option>
+                    <option value="diskusi">Diskusi Materi</option>
+                    <option value="project">Kerja Project</option>
+                    <option value="skripsi">Penelitian/Skripsi</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-button" id="searchButton">
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                <svg class="button-icon" id="buttonIcon" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.71875 11.7812C2.71875 16.7865 6.77603 20.8438 11.7812 20.8438C16.7865 20.8438 20.8438 16.7865 20.8438 11.7812C20.8438 6.77603 16.7865 2.71875 11.7812 2.71875C6.77603 2.71875 2.71875 6.77603 2.71875 11.7812Z" fill="#00A6ED"/>
+                    <path d="M16.628 7.00702C17.1283 7.8743 17.0078 8.88115 16.3571 9.25633C15.7073 9.63152 14.7739 9.23368 14.2736 8.3664C13.7734 7.49912 13.8948 6.49227 14.5446 6.11708C15.1953 5.7419 16.1278 6.13974 16.6289 7.00702" fill="white"/>
+                    <path d="M1.8125 11.7812C1.8125 17.2867 6.27578 21.75 11.7812 21.75C13.8611 21.75 15.7923 21.1129 17.3909 20.0236C17.2636 20.5838 17.2803 21.1672 17.4396 21.7192C17.5989 22.2712 17.8955 22.7738 18.3017 23.1801L21.1854 26.0637C21.825 26.6899 22.6858 27.0384 23.5808 27.0336C24.4759 27.0289 25.3329 26.6712 25.9658 26.0383C26.5987 25.4054 26.9564 24.5484 26.9611 23.6533C26.9659 22.7583 26.6174 21.8975 25.9912 21.2579L23.1076 18.3742C22.7046 17.9711 22.2067 17.6758 21.6597 17.5156C21.1127 17.3553 20.5342 17.3352 19.9774 17.4571C21.1345 15.7908 21.7532 13.8099 21.75 11.7812C21.75 6.27578 17.2867 1.8125 11.7812 1.8125C6.27578 1.8125 1.8125 6.27578 1.8125 11.7812ZM19.9375 11.7812C19.9375 12.8523 19.7265 13.9129 19.3166 14.9025C18.9068 15.8921 18.306 16.7912 17.5486 17.5486C16.7912 18.306 15.8921 18.9068 14.9025 19.3166C13.9129 19.7265 12.8523 19.9375 11.7812 19.9375C10.7102 19.9375 9.64955 19.7265 8.65999 19.3166C7.67043 18.9068 6.77129 18.306 6.01391 17.5486C5.25653 16.7912 4.65575 15.8921 4.24586 14.9025C3.83597 13.9129 3.625 12.8523 3.625 11.7812C3.625 9.61808 4.48432 7.5435 6.01391 6.01391C7.5435 4.48432 9.61808 3.625 11.7812 3.625C13.9444 3.625 16.019 4.48432 17.5486 6.01391C19.0782 7.5435 19.9375 9.61808 19.9375 11.7812Z" fill="#533566"/>
+                </svg>
+                <span id="buttonText">Cari Partner Belajar</span>
+            </button>
+        </form>
+
+        <div class="results-section" id="resultsSection">
+            <h2 style="margin-bottom: 20px; color: #21272A;">Hasil Pencarian</h2>
+            <div id="resultsContainer">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    $('#partnerSearchForm').on('submit', function(e) {
+        e.preventDefault();
+        const programStudi = $('#programStudi').val();
+        const semester = $('#semester').val();
+        const mataKuliah = $('#mataKuliah').val();
+        const gayaBelajar = $('#gayaBelajar').val();
+        const tujuanBelajar = $('#tujuanBelajar').val();
+        
+        if (!programStudi || !semester || !mataKuliah) {
+            alert('Mohon lengkapi minimal Program Studi, Semester, dan Mata Kuliah!');
+            return;
+        }
+        
+        showLoading();
+        
+        setTimeout(function() {
+            hideLoading();
+            showResults(programStudi, semester, mataKuliah, gayaBelajar, tujuanBelajar);
+        }, 2000);
+    });
+    
+    function showLoading() {
+        $('#loadingSpinner').show();
+        $('#buttonIcon').hide();
+        $('#buttonText').text('Mencari...');
+        $('#searchButton').prop('disabled', true);
+    }
+    
+    function hideLoading() {
+        $('#loadingSpinner').hide();
+        $('#buttonIcon').show();
+        $('#buttonText').text('Cari Partner Belajar');
+        $('#searchButton').prop('disabled', false);
+    }
+    
+    function showResults(prodi, semester, matkul, gaya, tujuan) {
+        const mockResults = [
+            {
+                nama: "Andi Pratama",
+                prodi: prodi,
+                semester: semester,
+                gaya: gaya || "Visual",
+                tujuan: tujuan || "Diskusi Materi",
+                rating: "4.8/5"
+            },
+            {
+                nama: "Sari Dewi", 
+                prodi: prodi,
+                semester: semester,
+                gaya: gaya || "Auditori",
+                tujuan: tujuan || "Kerja Project",
+                rating: "4.6/5"
+            },
+            {
+                nama: "Budi Santoso",
+                prodi: prodi, 
+                semester: semester,
+                gaya: gaya || "Kinestetik",
+                tujuan: tujuan || "Persiapan Ujian",
+                rating: "4.9/5"
+            }
+        ];
+        
+        let resultsHTML = '';
+        
+        if (mockResults.length > 0) {
+            mockResults.forEach(function(result) {
+                resultsHTML += `
+                    <div class="result-item">
+                        <h3>${result.nama}</h3>
+                        <p><strong>Program Studi:</strong> ${getProdiName(result.prodi)}</p>
+                        <p><strong>Semester:</strong> ${result.semester}</p>
+                        <p><strong>Gaya Belajar:</strong> ${result.gaya}</p>
+                        <p><strong>Tujuan:</strong> ${result.tujuan}</p>
+                        <p><strong>Rating:</strong> ${result.rating}</p>
+                    </div>
+                `;
+            });
+        } else {
+            resultsHTML = '<div class="no-results">Tidak ada partner yang ditemukan dengan kriteria tersebut.</div>';
+        }
+        
+        $('#resultsContainer').html(resultsHTML);
+        $('#resultsSection').fadeIn();
+    }
+    
+    function getProdiName(value) {
+        const prodiMap = {
+            'teknik-informatika': 'Teknik Informatika (TIF)',
+            'teknik-komputer': 'Teknik Komputer (TKOM)',
+            'sistem-informasi': 'Sistem Informasi (SI)',
+            'teknologi-informasi': 'Teknologi Informasi (TI)',
+            'pendidikan-ti': 'Pendidikan Teknologi Informasi (PTI)'
+        };
+        return prodiMap[value] || value;
+    }
+    
+    $('.select-field').on('change', function() {
+        $(this).closest('.form-group').addClass('filled');
+    });
+    
+    $('.form-field').on('focus', function() {
+        $(this).closest('.form-group').addClass('focused');
+    }).on('blur', function() {
+        $(this).closest('.form-group').removeClass('focused');
+    });
+});
+    </script>
+</body>
+</html>
