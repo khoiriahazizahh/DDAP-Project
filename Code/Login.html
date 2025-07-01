@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo Rek! - Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            width: 1440px;
+            height: 1024px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(90deg, #677BE6 0.01%, #744EA6 100.01%);
+            margin: 0 auto;
+        }
+
+        .login-container {
+            border: 1px solid #DDE1E6;
+            background: #FFF;
+            display: flex;
+            width: 680px;
+            height: 775px;
+            padding: 80px 80px 80px 80px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            border-radius: 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .login-header h1 {
+            color: #21272A;
+            text-align: center;
+            font-family: "Satoshi Variable", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 42px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 110%; 
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            font-size: 16px;
+            color: #697077;
+            margin: 0;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            align-self: stretch;
+            width: 100%;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #121619;
+        }
+
+        .form-control {
+            padding: 12px 16px;
+            border: 1px solid #DDE1E6;
+            border-radius: 12px;
+            font-size: 14px;
+            background: #FFF;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #677BE6;
+            box-shadow: 0 0 0 3px rgba(103, 123, 230, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #C1C7CD;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .form-check-input {
+            margin-right: 8px;
+        }
+
+        .form-check-label {
+            font-size: 14px;
+            color: #697077;
+            flex: 1;
+        }
+
+        .forgot-password {
+            font-size: 14px;
+            color: #677BE6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #744EA6;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            display: flex;
+            padding: 14px 24px;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #677BE6 0.01%, #744EA6 100.01%);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(103, 123, 230, 0.3);
+        }
+
+        .social-login {
+            display: flex;
+            padding-top: 24px;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            position: relative;
+        }
+
+        .top-divider {
+            width: 100%;
+            height: 1px;
+            background: #DDE1E6;
+            margin-bottom: 16px;
+        }
+
+        .social-divider {
+            font-size: 14px;
+            color: #697077;
+            margin: 16px 0;
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .social-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #DDE1E6;
+            transform: translateY(-50%);
+        }
+
+        .social-divider::after {
+            content: 'Atau login dengan:';
+            background: #FFF;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: 1.5px solid #677BE6;
+            border-radius: 12px;
+            background: #FFF;
+            color: #677BE6;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 110px;
+            justify-content: center;
+        }
+
+        .social-btn:hover {
+            background: #f5f0fc;
+            border-color: #744EA6;
+            color: #744EA6;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(116, 78, 166, 0.15);
+        }
+
+        .social-btn i {
+            font-size: 16px;
+            color: inherit;
+        }
+
+        .google-btn:hover {
+            border-color: #4285f4;
+            color: #4285f4;
+            background: #f8fbff;
+        }
+
+        .apple-btn:hover {
+            border-color: #000;
+            color: #000;
+            background: #f8f8f8;
+        }
+
+        .twitter-btn:hover {
+            border-color: #1da1f2;
+            color: #1da1f2;
+            background: #f0f9ff;
+        }
+
+        .register-link {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #697077;
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .register-link::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #DDE1E6;
+        }
+
+        .register-link a {
+            color: #677BE6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-link a:hover {
+            color: #744EA6;
+            text-decoration: underline;
+        }
+
+        .login-container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .social-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                width: 100vw;
+                height: 100vh;
+                padding: 20px;
+            }
+            
+            .login-container {
+                width: 100%;
+                max-width: 480px;
+                height: auto;
+                padding: 40px 30px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .social-btn {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Halo Rek!</h1>
+            <p>Login untuk melanjutkan</p>
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Masukkan email Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Sandi</label>
+                <input type="password" class="form-control" placeholder="Masukkan kata sandi Anda" required>
+            </div>
+
+            <div class="form-check">
+                <div>
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Ingat saya</label>
+                </div>
+                <a href="#" class="forgot-password">Lupa sandi?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+
+        <div class="social-login">
+            <div class="top-divider"></div>
+            <div class="social-divider"></div>
+            
+            <div class="social-buttons">
+                <button class="social-btn google-btn" id="googleLogin">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+
+                <button class="social-btn apple-btn" id="appleLogin">
+                    <i class="fab fa-apple"></i>
+                    Apple
+                </button>
+
+                <button class="social-btn twitter-btn" id="twitterLogin">
+                    <i class="fab fa-twitter"></i>
+                    Twitter
+                </button>
+            </div>
+        </div>
+
+        <div class="register-link">
+            Belum punya akun? <a href="#">Daftar</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const email = $(this).find('input[type="email"]').val();
+                const password = $(this).find('input[type="password"]').val();
+                
+                if (!email || !password) {
+                    alert('Mohon isi semua field yang diperlukan');
+                    return;
+                }
+                
+                $('.login-btn').html('<i class="fas fa-spinner fa-spin"></i> Loading...');
+                $('.login-btn').prop('disabled', true);
+                
+                setTimeout(function() {
+                    alert('Login berhasil! Selamat datang, ' + email);
+                    $('.login-btn').html('Log In');
+                    $('.login-btn').prop('disabled', false);
+                }, 2000);
+            });
+            
+            function handleSocialLogin(provider, button) {
+                const originalContent = button.html();
+                button.addClass('loading');
+                button.html('<i class="fas fa-spinner"></i> Connecting...');
+                button.prop('disabled', true);
+                
+                setTimeout(function() {
+                    button.removeClass('loading');
+                    button.html(originalContent);
+                    button.prop('disabled', false);
+                    
+                    const providerNames = {
+                        'google': 'Google',
+                        'apple': 'Apple',
+                        'twitter': 'Twitter'
+                    };
+                    
+                    alert(`Login dengan ${providerNames[provider]} berhasil! (Demo)`);
+                }, 2000);
+            }
+            
+            $('#googleLogin').on('click', function(e) {
+                e.preventDefault();
+                handleSocialLogin('google', $(this));
+            });
+            
+            $('#appleLogin').on('click', function(e) {
+                e.preventDefault();
+                handleSocialLogin('apple', $(this));
+            });
+            
+            $('#twitterLogin').on('click', function(e) {
+                e.preventDefault();
+                handleSocialLogin('twitter', $(this));
+            });
+            
+            $('.forgot-password').on('click', function(e) {
+                e.preventDefault();
+                const email = prompt('Masukkan email Anda untuk reset password:');
+                if (email) {
+                    alert('Link reset password telah dikirim ke ' + email + ' (Demo)');
+                }
+            });
+            
+            $('.register-link a').on('click', function(e) {
+                e.preventDefault();
+                alert('Mengarahkan ke halaman pendaftaran... (Demo)');
+            });
+            
+            $('.form-control').on('focus', function() {
+                $(this).parent().addClass('focused');
+            });
+            
+            $('.form-control').on('blur', function() {
+                if ($(this).val() === '') {
+                    $(this).parent().removeClass('focused');
+                }
+            });
+            
+            $('.social-btn').hover(
+                function() {
+                    if (!$(this).hasClass('loading')) {
+                        $(this).css('transform', 'translateY(-2px) scale(1.02)');
+                    }
+                },
+                function() {
+                    if (!$(this).hasClass('loading')) {
+                        $(this).css('transform', 'translateY(0) scale(1)');
+                    }
+                }
+            );
+
+            $('.social-btn').on('mousedown', function() {
+                if (!$(this).hasClass('loading')) {
+                    $(this).css('transform', 'translateY(0) scale(0.98)');
+                }
+            });
+
+            $('.social-btn').on('mouseup', function() {
+                if (!$(this).hasClass('loading')) {
+                    $(this).css('transform', 'translateY(-2px) scale(1.02)');
+                }
+            });
+
+            $('.social-btn').on('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    $(this).click();
+                }
+            });
+
+            setTimeout(function() {
+                $('.social-btn').each(function(index) {
+                    setTimeout(() => {
+                        $(this).css({
+                            'opacity': '1',
+                            'transform': 'translateY(0)'
+                        });
+                    }, index * 100);
+                });
+            }, 300);
+
+            $('.social-btn').css({
+                'opacity': '0',
+                'transform': 'translateY(20px)',
+                'transition': 'all 0.4s ease'
+            });
+        });
+    </script>
+</body>
+</html>
