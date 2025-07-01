@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - StudyBuddy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<style>
+    body {
+        font-family: 'Satoshi', sans-serif;
+        background: linear-gradient(to right, rgb(102, 122, 228), rgb(115, 78, 166));
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navgrad navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <img src="assets/logo.png" alt="StudyBuddy" style="width: 100px;" class="navbar-brand mx-5">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Lorem</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="assets/bell.png" class="me-3" style="width: 1.5%;" alt="">
+                <img src="assets/people.png" class="me-3" style="width: 1.5%;" alt="">
+                <a href="register.html" class="text text-black fw-bold fs-5 me-3"
+                    style="text-decoration: none; color: white;">Ratna</a>
+                <i class="bi bi-caret-down-fill text-black"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Include Navbar dari templatenav.html -->
+    <div class="container-fluid px-5">
+        <div class="header-box mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="row">
+                    <div class="col-12  d-flex justify-content-start">
+                        <h3 class="mb-1 text-black fw-medium fs-1"><i class="bi bi-people-fill me-2"></i>Grup Belajar
+                        </h3>
+                    </div>
+                    <div class="col-12  d-flex justify-content-start">
+                        <p class="mb-0 fs-5 fw-light">Bergabung atau buat grup belajar bersama teman-teman</p>
+                    </div>
+                </div>
+                <a href="#" class="btn chip py-2 px-4">Buat Grup Baru</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Filter -->
+            <div class="col-lg-3">
+                <div class="bg-white rounded-4 p-4 mb-4 shadow-sm">
+                    <h5 class="fw-medium fs-3 "><i class="bi bi-search me-2"></i>Filter Grup</h5>
+                    <div class="mt-3">
+                        <label class="form-label">Program Studi</label>
+                        <input type="text" class="form-control custom-input" placeholder="..." />
+                    </div>
+                    <div class="mt-3">
+                        <label class="form-label">Mata Kuliah</label>
+                        <input type="text" class="form-control custom-input" placeholder="..." />
+                    </div>
+                    <div class="mt-3">
+                        <label class="form-label">Status Grup</label>
+                        <input type="text" class="form-control custom-input" placeholder="..." />
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-4 p-4 shadow-sm">
+                    <h5><i class="bi bi-bookmark-fill me-2"></i>Grup Saya</h5>
+                    <div class="mt-3">
+                        <button class="btn btn-outline-secondary w-100 mb-2 rounded-pill">Basis Data Squad</button>
+                        <button class="btn btn-outline-secondary w-100 mb-2 rounded-pill">Pemrogramman Lanjut</button>
+                        <button class="btn btn-outline-secondary w-100 mb-2 rounded-pill">Probabilitas Squad</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grup Tersedia -->
+            <div class="col-lg-9">
+                <div style="background: #E7DDD1;" class="rounded-4 p-4 shadow-sm">
+                    <h4 class="mb-4 fw-bold fs-2 ">Grup Tersedia</h4>
+                    <div class="row g-4">
+                        <!-- Card 1 -->
+                        <div class="col-md-6">
+                            <div class="p-3 shadow-sm rounded-4" style="background: #f8f9fa;">
+                                <h5 class="mb-1">Study Web Programming</h5>
+                                <span class="badge mb-2" style="background-color: #82afe2;">Pemrograman Web</span>
+                                <p>Grup Belajar Untuk memahami konsep HTML, CSS, JavaScript, dan PHP. Cocok untuk yang
+                                    mau belajar bareng mengerjakan tugas praktikum.</p>
+                                <div class="mb-2 badge bg-badge-secondary"><strong>Semester:</strong> 2</div>
+                                <div class="mb-2"><strong>Anggota:</strong>
+                                    <img src="https://i.pravatar.cc/24?u=1" class="rounded-circle me-1" />
+                                    <img src="https://i.pravatar.cc/24?u=2" class="rounded-circle me-1" />
+                                    <img src="https://i.pravatar.cc/24?u=3" class="rounded-circle" />
+                                </div>
+                                <div class="d-flex justify-content-between gap-2">
+                                    <button class="btn btn-gradient">Gabung Grup</button>
+                                    <div class="gradient-border">
+                                        <button class="btn card-content" style="border-radius: 16px;">Detail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-md-6">
+                            <div class="p-3 shadow-sm rounded-4" style="background: #f8f9fa;">
+                                <h5 class="mb-1">Basis Data Squad</h5>
+                                <span class="badge bg-badge-blue mb-2">Basis Data</span>
+                                <p>Mari belajar SQL, desain database, dan normalisasi bersama-sama. Target: siap untuk
+                                    quiz dan UTS!</p>
+                                <div class="mb-2 badge bg-badge-secondary"><strong>Semester:</strong> 2</div>
+                                <div class="mb-2"><strong>Anggota:</strong>
+                                    <img src="https://i.pravatar.cc/24?u=4" class="rounded-circle me-1" />
+                                    <img src="https://i.pravatar.cc/24?u=5" class="rounded-circle me-1" />
+                                    <img src="https://i.pravatar.cc/24?u=6" class="rounded-circle" />
+                                </div>
+                                <div class="d-flex justify-content-between gap-2">
+                                    <button class="btn btn-gradient">Gabung Grup</button>
+                                    <div class="gradient-border">
+                                        <button class="btn card-content" style="border-radius: 16px;">Detail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-md-6">
+                            <div class="p-3 shadow-sm rounded-4" style="background: #f8f9fa;">
+                                <h5 class="mb-1">Aljabar Linear Club</h5>
+                                <span class="badge bg-badge-blue mb-2">Aljabar Linear</span>
+                                <p>Fokus pada matriks, vektor, dan transformasi linear. Sesi intensif persiapan UAS
+                                    dengan metode pembelajaran visual.</p>
+                                <div class="mb-2 badge bg-badge-secondary"><strong>Semester:</strong> 2</div>
+                                <div class="mb-2"><strong>Anggota:</strong>
+                                    <img src="https://i.pravatar.cc/24?u=7" class="rounded-circle" />
+                                </div>
+                                <div class="d-flex justify-content-between gap-2">
+                                    <button class="btn btn-gradient">Gabung Grup</button>
+                                    <div class="gradient-border">
+                                        <button class="btn card-content" style="border-radius: 16px;">Detail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="col-md-6">
+                            <div class="p-3 shadow-sm rounded-4" style="background: #f8f9fa;">
+                                <h5 class="mb-1">Mobile App Dev</h5>
+                                <span class="badge bg-badge-blue mb-2">Pemrograman Mobile</span>
+                                <p>Belajar Flutter dan React Native untuk mengembangkan aplikasi mobile. Project-based
+                                    learning dengan mentoring peer-to-peer.</p>
+                                <div class="mb-2 badge bg-badge-secondary"><strong>Semester:</strong> 2</div>
+                                <div class="mb-2"><strong>Anggota:</strong>
+                                    <img src="https://i.pravatar.cc/24?u=8" class="rounded-circle me-1" />
+                                    <img src="https://i.pravatar.cc/24?u=9" class="rounded-circle" />
+                                </div>
+                                <div class="d-flex justify-content-between gap-2">
+                                    <button class="btn btn-gradient">Gabung Grup</button>
+                                    <div class="gradient-border">
+                                        <button class="btn card-content" style="border-radius: 16px;">Detail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
