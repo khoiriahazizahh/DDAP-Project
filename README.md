@@ -3,7 +3,11 @@
 StudyBuddy adalah aplikasi berbasis web yang dirancang khusus untuk membantu mahasiswa FILKOM UB mencari partner belajar yang cocok berdasarkan mata kuliah, gaya belajar, dan lokasi. Dengan fitur-fitur yang relevan dan user-centric, StudyBuddy memfasilitasi kolaborasi belajar yang efisien dan aman.
 
 ---
-
+## Cara Menjalankan
+- Clone repository https://github.com/khoiriahazizahh/DDAP-Project
+- Buka di IDE masing-masing
+- Mulai jalankan dari landing page kemudian ke sign up atau login
+  
 ## Fitur Utama
 
 ###  Matching Partner
@@ -58,7 +62,7 @@ StudyBuddy adalah aplikasi berbasis web yang dirancang khusus untuk membantu mah
 ---
 
 ##  Status Proyek
->  Sedang dalam tahap perancangan wireframe dan validasi kebutuhan pengguna.
+>  Sudah selesai
 
 ---
 
